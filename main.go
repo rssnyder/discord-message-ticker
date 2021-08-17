@@ -51,41 +51,36 @@ func main() {
 	messages := strings.Split(message, "")
 	cap := len(messages)
 
-	// create timer
-	timer := time.NewTicker(time.Duration(frequency) * time.Second)
-
 	// forever
 	for {
 		// starting at each indix once
-		for index, _ := range messages {
-			// every period of our timer
-			select {
-			case <-timer.C:
-				// add header and current index
-				display := header + messages[index]
-				counter := index + 1
-				for next := 1; next < 31-len(header); next++ {
-					// start message over from the beginning
-					if counter == cap {
-						display += " "
-						counter = 0
-					}
-
-					// append the next character
-					display += messages[counter]
-					counter++
+		for index := 0; index < cap; index++ {
+			// add header and current index
+			display := header + messages[index]
+			counter := index + 1
+			for next := 1; next < 31-len(header); next++ {
+				// start message over from the beginning
+				if counter == cap {
+					display += " "
+					counter = 0
 				}
 
-				// Update nickname in guilds
-				for _, g := range guilds {
-					err = dg.GuildMemberNickname(g.ID, "@me", display)
-					if err != nil {
-						fmt.Printf("Error updating nickname: %s\n", err)
-						continue
-					}
-					fmt.Printf("Updating nickname: %s in %s\n", display, g.Name)
-				}
+				// append the next character
+				display += messages[counter]
+				counter++
 			}
+
+			// Update nickname in guilds
+			for _, g := range guilds {
+				err = dg.GuildMemberNickname(g.ID, "@me", display)
+				if err != nil {
+					fmt.Printf("Error updating nickname: %s\n", err)
+					continue
+				}
+				fmt.Printf("Updating nickname: %s in %s\n", display, g.Name)
+			}
+
+			time.Sleep(time.Duration(frequency) * time.Second)
 		}
 	}
 }
