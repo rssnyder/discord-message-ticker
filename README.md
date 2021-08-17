@@ -2,6 +2,8 @@
 
 display a message on a discord server via a bot nickname.
 
+![discord-message-ticker](https://user-images.githubusercontent.com/7338312/129655030-6b826287-88c4-4088-b5bf-7c15a3f494b2.gif)
+
 ## download
 
 visit the [release](https://github.com/rssnyder/discord-message-ticker/releases) page and download the latest version for your os.
@@ -29,3 +31,9 @@ Usage of ./discord-message-ticker:
   -t string
         Bot token
 ```
+
+## Support
+
+If you have a support question please open a github issue or find me on discord at `jonesbooned#1111` or [join the support server](https://discord.gg/CQqnCYEtG7).
+
+Love my bots? Maybe [buy me a coffee](https://ko-fi.com/rileysnyder)!
